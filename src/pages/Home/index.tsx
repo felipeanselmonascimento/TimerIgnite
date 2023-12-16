@@ -6,13 +6,6 @@ import * as zod from 'zod'
 import { useEffect, useState } from "react";
 import { differenceInSeconds } from "date-fns";
 
-// trabalhar com formmularios existem duas formas controlled and uncontrolled 
-// validacao no form
-
-// vamos usar a bibioteca ReactHookForm
-// vamoso usar uma biblioteca de validacao de form chamada zod
-// para integrar o react-hook-form com a zod eu preciso instala @hookform/resolvers < ella q vai permitir eu integrar o reachookform com as lib de validacao
-
 const newCycleFormValidationSchema = zod.object({
     task: zod.string().min(1, 'Please Inform Task'),
     minutesAmount: zod.number().min(5).max(60)
@@ -38,7 +31,7 @@ export function Home() {
     const [activeCycleId, setActiveCycleId] = useState<string | null>(null)
     const [amountSecondsPassed, setAmountSecondsPassed] = useState(0)
 
-    const { register, handleSubmit, watch, formState, reset } = useForm<NewCycleFormDate>({  //passar o mmouse sobre a funcao pra saber quando passar o generiics do ts
+    const { register, handleSubmit, watch, reset } = useForm<NewCycleFormDate>({  //passar o mmouse sobre a funcao pra saber quando passar o generiics do ts
         resolver: zodResolver(newCycleFormValidationSchema),
         defaultValues: {
             task: '',           //esse default e o valor inicial
