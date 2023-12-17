@@ -3,8 +3,8 @@ import { CountdownContainer, FormContainer, HomeContainer, Separator, StartCount
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
-import { useState } from "react";
-// import { differenceInSeconds } from "date-fns";
+import { useEffect, useState } from "react";
+import { differenceInSeconds } from "date-fns";
 
 const newCycleFormValidationSchema = zod.object({
     task: zod.string().min(1, 'Please Inform Task'),
@@ -40,13 +40,13 @@ export function Home() {
 
     const activeCycle = cycles.find(cycle => cycle.id === activeCycleId)
 
-    // useEffect(() => {
-    //     if (activeCycle) {
-    //         setInterval(() => {
-    //             setAmountSecondsPassed(differenceInSeconds(new Date(), activeCycle.startDate))
-    //         }, 1000)
-    //     }
-    // }, [activeCycle])
+    useEffect(() => {
+        if (activeCycle) {
+            setInterval(() => {
+                setAmountSecondsPassed(differenceInSeconds(new Date(), activeCycle.startDate))
+            }, 1000)
+        }
+    }, [activeCycle])
 
     const handleCreateNewCycle = (data: NewCycleFormDate) => {
 
