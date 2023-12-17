@@ -41,11 +41,18 @@ export function Home() {
     const activeCycle = cycles.find(cycle => cycle.id === activeCycleId)
 
     useEffect(() => {
+        let interval: number
+
         if (activeCycle) {
-            setInterval(() => {
+            interval = setInterval(() => {
                 setAmountSecondsPassed(differenceInSeconds(new Date(), activeCycle.startDate))
             }, 1000)
         }
+
+        return  () => {         //use effect tem funcao de retorno caso sua dependecia tenha alteracao
+            clearInterval(interval)
+        }
+
     }, [activeCycle])
 
     const handleCreateNewCycle = (data: NewCycleFormDate) => {
@@ -62,6 +69,7 @@ export function Home() {
         setCycles(state => [...state, newCycle])
 
         setActiveCycleId(id)
+        setAmountSecondsPassed(0)
 
         reset() // volta para o valor q coloquei no defaultValue
     }
@@ -73,6 +81,12 @@ export function Home() {
 
     const minutes = String(minutesAmount).padStart(2, '0') // preenche uma string ate um tamanho especifico
     const seconds = String(secondsAmount).padStart(2, '0')
+
+    useEffect(() => {
+        if (activeCycle) {
+            document.title = `${minutes}:${seconds}`
+        }
+    }, [minutes, seconds])
 
 
     const task = watch('task') // quero observar o campo task
