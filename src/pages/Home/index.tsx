@@ -3,18 +3,13 @@ import { CountdownContainer, FormContainer, HomeContainer, Separator, StartCount
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
-import { useEffect, useState } from "react";
-import { differenceInSeconds } from "date-fns";
+import { useState } from "react";
+// import { differenceInSeconds } from "date-fns";
 
 const newCycleFormValidationSchema = zod.object({
     task: zod.string().min(1, 'Please Inform Task'),
     minutesAmount: zod.number().min(5).max(60)
 })
-
-// interface NewCycleFormDate {
-//     task: string                            << zod cria isso daqui para nos atraves  do schema de validacao
-//     minutesAmount: number
-// }
 
 type NewCycleFormDate = zod.infer<typeof newCycleFormValidationSchema>
 
@@ -45,13 +40,13 @@ export function Home() {
 
     const activeCycle = cycles.find(cycle => cycle.id === activeCycleId)
 
-    useEffect(() => {
-        if (activeCycle) {
-            setInterval(() => {
-                setAmountSecondsPassed(differenceInSeconds(new Date(), activeCycle.startDate))
-            }, 1000)
-        }
-    }, [activeCycle])
+    // useEffect(() => {
+    //     if (activeCycle) {
+    //         setInterval(() => {
+    //             setAmountSecondsPassed(differenceInSeconds(new Date(), activeCycle.startDate))
+    //         }, 1000)
+    //     }
+    // }, [activeCycle])
 
     const handleCreateNewCycle = (data: NewCycleFormDate) => {
 
@@ -72,13 +67,11 @@ export function Home() {
     }
 
     const totalSeconds = activeCycle ? activeCycle.minutesAmount * 60 : 0
-
     const currentSeconds = activeCycle ? totalSeconds - amountSecondsPassed : 0
-
     const minutesAmount = Math.floor(currentSeconds / 60)
     const secondsAmount = currentSeconds % 60
 
-    const minutes = String(minutesAmount).padStart(2, '0')
+    const minutes = String(minutesAmount).padStart(2, '0') // preenche uma string ate um tamanho especifico
     const seconds = String(secondsAmount).padStart(2, '0')
 
 
