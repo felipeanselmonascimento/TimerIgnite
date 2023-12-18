@@ -1,12 +1,12 @@
 import { HandPalm, Play } from "phosphor-react";
-import { CountdownContainer, FormContainer, HomeContainer, Separator, StartCountDownButton, TaskInput, MinutesAmountInput, StopCountDownButton } from "./styles";
+import { HomeContainer, StartCountDownButton, StopCountDownButton } from "./styles";
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
 import { useEffect, useState } from "react";
 import { differenceInSeconds } from "date-fns";
-import { NewCycleForm } from "./NewCycleForm";
-import { Countdown } from "./Countdown";
+import { NewCycleForm } from "./components/NewCycleForm";
+import { Countdown } from "./components/Countdown";
 
 const newCycleFormValidationSchema = zod.object({
     task: zod.string().min(1, 'Please Inform Task'),
@@ -30,7 +30,7 @@ export function Home() {
     const [activeCycleId, setActiveCycleId] = useState<string | null>(null)
     const [amountSecondsPassed, setAmountSecondsPassed] = useState(0)
 
-    const { register, handleSubmit, watch, reset } = useForm<NewCycleFormDate>({  //passar o mmouse sobre a funcao pra saber quando passar o generiics do ts
+    const { handleSubmit, watch, reset } = useForm<NewCycleFormDate>({  //passar o mmouse sobre a funcao pra saber quando passar o generiics do ts
         resolver: zodResolver(newCycleFormValidationSchema),
         defaultValues: {
             task: '',           //esse default e o valor inicial
