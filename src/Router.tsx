@@ -14,6 +14,3 @@ export function Router() {
     )
 }
 
-// ROUTE:HOME para cd rota so a barra pq nao queremos q o usario digite nada elememnt q vai carregar e o Home
-
-// DEFAULTLAYOOUT por volta das rotas q a gente tem aplica o / no path para aplicar em todas as rotas
