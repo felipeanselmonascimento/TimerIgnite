@@ -3,7 +3,7 @@
 </h1>
 
 <h3 align="center">
-	Hello this is my second project in ReactJS, in this Project I have used loads of things from react like useState, UseContext, UseReducer, UseEffect, ReactRouterDom, Properties, Keys and etc, also I used a external lib called ReactHookForm to handle with forms(controlled and uncontrolled) and styled-components as CSS in JS, lib ZOD for validation, if you would like to have look, follow the steps below, hope you enjoy it, thanks :)
+	In this Project I have used loads of things from react like useState, UseContext, UseReducer, UseEffect, ReactRouterDom, Properties, Keys and etc, also I used a external lib called ReactHookForm to handle with forms(controlled and uncontrolled) and styled-components as CSS in JS, lib ZOD for validation, if you would like to have look, follow the steps below, hope you enjoy it, thanks :)
 </h3>
 
 <p align="center">
